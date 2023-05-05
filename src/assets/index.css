@@ -10,6 +10,11 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+a {
+  text-decoration: unset;
+  color: unset;
+}
+
 body::-webkit-scrollbar {
   display: none;
 }
@@ -97,12 +102,6 @@ footer {
   transform: translate(1px, 1px);
 }
 
-a.active-link {
-  font-weight: bold;
-  text-decoration: underline;
-  color: #161616;
-}
-
 /*** HOME PAGE ***/
 .home-container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
@@ -188,6 +187,15 @@ a.active-link {
 /*** VAN PAGES ***/
 .van-list-container {
   padding-inline: 23px;
+}
+
+.van-list-filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.van-list-filter-buttons > a {
+  margin-right: 15px;
 }
 
 .van-list {
@@ -453,4 +461,14 @@ i[class*='van-type-'] {
 .host-van-detail-image {
   height: 100px;
   border-radius: 5px;
+}
+
+.not-found-container {
+  padding-inline: 26px;
+}
+
+.not-found-container .link-button {
+  width: 100%;
+  background-color: #161616;
+  color: white;
 }
