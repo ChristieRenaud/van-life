@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useEffect } from "react"
+import { Link, useLoaderData } from "react-router-dom"
+import { getHostVans } from "../../../api"
+import { requireAuth } from "../../../utils"
 
-function HostVans() {
-  const [vans, setVans] = useState([])
-  useEffect(() => {
-    fetch('/api/host/vans')
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans))
-  }, [])
+export async function loader() {
+  await requireAuth()
+  return getHostVans()
+}
+export default function HostVans() {
+  const vans = useLoaderData()
 
   const hostVansEls = vans.map((van) => (
     <Link to={van.id} key={van.id} className="host-van-link-wrapper">
@@ -25,14 +26,8 @@ function HostVans() {
     <section>
       <h1 className="host-vans-title">Your listed vans</h1>
       <div className="host-vans-list">
-        {vans.length > 0 ? (
-          <section>{hostVansEls}</section>
-        ) : (
-          <h2>Loading...</h2>
-        )}
+        <section>{hostVansEls}</section>
       </div>
     </section>
   )
 }
-
-export default HostVans
